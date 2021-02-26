@@ -1,0 +1,1116 @@
+\documentclass[12pt,letterpaper,english]{article}
+\usepackage[table]{xcolor}
+\usepackage{fullpage,epsfig,amsthm,amsmath,latexsym,amssymb,verbatim,url,setspace,geometry,multirow,fancyhdr,pdfsync,epstopdf,rotating,enumerate,caption,subcaption,hyperref,lscape,multicol,cancel,colortbl,rotfloat,babel,array,booktabs}
+
+\usepackage[round]{natbib}
+%\bibliographystyle{apsr}
+\bibliographystyle{aer}
+\citestyle{harvard}
+
+\newcommand{\e}[1]{\mathbb{E}\!\left[ #1 \right]}
+\newcommand{\var}{\textrm{Var}}
+\newcommand{\cov}{\textrm{Cov}}
+\newcommand{\corr}{\textrm{Corr}}
+\DeclareMathOperator*{\plim}{plim}
+%\hypersetup{colorlinks=true, linkcolor=blue}
+\newtheorem{claim}{{\bf \sc Claim}}
+\newtheorem{theorem}{{\bf \sc Theorem}}
+\newtheorem{lemma}{{\bf \sc Lemma}}
+\newtheorem{example}{{\bf \sc Example}}
+\newtheorem{corollary}{{\bf \sc Corollary}}
+\newtheorem{proposition}{{\bf \sc Proposition}}
+\newtheorem{remark}{{\bf \sc Remark}}
+\newtheorem{conjecture}{{\bf \sc Conjecture}}
+\newtheorem{observation}{{\bf \sc Observation}}
+
+\geometry{left=1in,right=1in,top=1in,bottom=1in}
+%\newtheorem{proposition}{Proposition}
+%\newtheorem{assumption}{Assumption}
+%\newtheorem{definition}{Definition}
+
+\DeclareMathOperator*{\argmax}{arg max} \DeclareMathOperator*{\argmin}{arg min}
+
+\pagestyle{fancy}
+\rfoot{\thepage}
+\lfoot{}
+\cfoot{}
+\lhead{}
+\rhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0pt}
+
+%\setlength{\marginparwidth}{0in}
+%\setlength{\marginparsep}{0in}
+%\setlength{\oddsidemargin}{0in}
+%\setlength{\evensidemargin}{0in}
+%\setlength{\textwidth}{6.5in}
+%\setlength{\topmargin}{-.5in}
+%\setlength{\textheight}{9.0in}
+%\renewcommand{\baselinestretch}{1.1}
+%\newcommand{\bbr}{\mathbb{R}}
+%\newcommand{\textbc}{\text{BC}}
+%\newcommand{\textd}{\text{d}}
+%\newcommand{\cali}{\mathcal{I}}
+%\newcommand{\conv}{\text{Conv}}
+%\def\eproof{\hbox{\hskip3pt\vrule width4pt height8pt depth1.5pt}}
+
+\title{The Evolution of Friendships and Homophily\thanks{We gratefully acknowledge financial support under ARO MURI Award No. W911NF-12-1-0509 and NSF grant SES-1629446.}}
+
+\newlength{\colwidth}
+\setlength{\colwidth}{2in}
+
+\author{{\small
+\begin{tabular}{ccc} 
+{\bf Matthew O.~Jackson}		& {\bf Stephen M.~Nei}	\\
+Stanford University, CIFAR,	& University of			\\
+and The Santa Fe Institute	& Essex				\\
+jacksonm@stanford.edu 		& stephen.nei@economics.ox.ac.uk \\
+\href{http://www.stanford.edu/~jacksonm}{{\color{blue}www.stanford.edu/$\sim$jacksonm}} & \href{https://sites.google.com/site/sneissite/}{{\color{blue}sites.google.com/site/sneissite/}} \\
+ & \\
+{\bf Erik Snowberg} 			& {\bf Leeat Yariv} 	\\
+University of British 			& Princeton University, 	\\
+Columbia, CESifo, and NBER 	& CEPR, and NBER 	\\	
+snowberg@mail.ubc.ca 		& lyariv@princeton.edu \\
+\href{https://eriksnowberg.com}{{\color{blue}eriksnowberg.com}} & \href{https://leeatyariv.com}{{\color{blue}leeatyariv.com}}  \\
+\rule{\colwidth}{0pt}& \rule{\colwidth}{0pt}\\
+\end{tabular}
+}}
+\date{\today}
+
+\pagestyle{fancy}
+\rfoot{\thepage}
+\lfoot{}
+\cfoot{}
+\lhead{}
+\rhead{}
+\chead{}
+\renewcommand{\headrulewidth}{0pt}
+
+%\linespread{1.6}
+
+\begin{document}
+
+\begin{singlespace}
+\maketitle
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+\begin{abstract}
+\noindent We examine friendship formation among university students over several years. Consistent with a model of costly network formation, the students begin by making friendships widely with others of different ethnicities and gender.  By sophomore year they increase the number of their friendships, dropping friendships with others of different ethnicities and gender on average, and adding friendships with those of the same ethnicity and gender.  Over time, their friendships also increase with others who are similar along some personality dimensions. We discuss the implications for students' learning and performance.
+\end{abstract}
+{\small JEL Classifications:
+
+\noindent Keywords: }
+
+\end{singlespace}
+
+\newpage
+
+\section{Introduction \label{sec:intro}} \doublespace
+
+
+Here preferences:  search frictions so takes time to find own types, but prefer own types.
+
+Preference is what drives the difference, plus capacity constraint -- as we admit friends of friends meeting strategies.
+
+\subsection{Literature Review}
+\label{sec:litReview}
+
+Homophily is of interest both in economics and in the broader academic community. \cite{mcpherson2001birds} provide an overview of the concept and discuss its various incarnations. 
+
+Understanding homophily is important for understanding peer effects (i.e., the transmission of behavior and information on networks). As noted by \cite{manski1993identification}, estimations of peer effects can be confounded by selection issues; if similar agents are more likely to interact (which is the case for homophilous agents), then similarity in their behavior might be due to their baseline similarity and not to peer influence. Studies such as \cite{aral2009distinguishing} attempt to disentangle the source of correlation in behavior between homophily and peer influence; they find that more than half of the adoption behavior of an online instant messaging service can be explained by homophily rather than peer influence.
+
+It is an interesting and open question of precisely how peer group composition affects academic outcomes. \cite{burns2015interaction} use a sample of students from the University of Cape Town who were randomly assigned roommates to show that having a roommate of a different race has a significant effect on outcomes such as decreased prejudice, increased inter-racial interactions, greater cooperation, and improved GPAs. Also looking at students at the University of Cape Town, \cite{garlick2018academic} compares changes in the GPA performance of students who are assigned to dorms randomly with students who are grouped together based on their past academic performance and finds that grouping low GPA students together leads to worse outcomes for such students while grouping high GPA students together does not have a significant benefit; this suggests that policies that encourage mixed student interactions are overall beneficial. Conversely, \cite{cools2019girls} find that when grade school aged girls are grouped with ``high achiever''\footnote{Defined as having a parent with an education level beyond college.} boys, the girls have worse academic achievement while girls grouped with high achiever girls have better academic achievement.\footnote{They find no affect on boys by either gender of high achievers.} We contribute to these studies by providing evidence that the composition of one's friends and study partners affects one's GPA, particularly for female-with-female links.
+
+Several studies propose utility-based models of network formation that lead to network formation. \cite{christakis2010empirical} propose a model with random meeting of agents who add links if both partners find the link to be utility increasing with utility possibly dependent on characteristics of the partner. \cite{mele2017structural,mele2017segregation} builds on this model by allowing the utility of a link to depend on the current graph structure and uses this model to study homophily in high school student friendship networks. One particularly relevant aspect of Mele's model is that it allows for homophily over homophily; that is, one agent can value another more if that other agent's neighborhood is more uniform. We share this interest and investigate the potential for homophily over homophily in our data. %\cite{currarini2009economic} suggest a continuous time model of network formation with homophily to explain relationships between homophily and group size as a result of biased preferences and biases in the meeting rates of agents.\footnote{\cite{currarini2010identifying} use this continuous time model to look at the empirical importance of these two sources of homophily.} Looking beyond pure preference based rationales for homophily, \cite{kets2016belief} are inspired by experimental results such as those of \cite{jackson2014culture} to propose a theory of homophily based on strategic considerations, with agents congregating with similar agents to achieve higher payoffs in a coordination game. Our theoretical model of network formation with homophily ties in with the preference focused models; one novelty of our approach is that we allow for both the creation and deletion of links, which complicates the theoretical analysis.
+
+The focus of our study is the evolution the homophily in a network.\footnote{For an introduction to the studies of networks changing with time, see \cite{holme2012temporal}} \cite{bramoulle2012homophily} and \cite{tarbush2017social} provide theoretical models of the dynamics of homoophily that allow for declining homophily and non-monotonicities in homophily. \cite{shrum1988friendship} look at children between grades 3 and 12 and find that racial homophily increases in early grades while gender homophily decreases in later grades. \cite{overgoor2019} use Facebook data to investigate changes in multiple types of homophily in the friending behavior of American undergraduates. They find sudden changes in homophily attributable to major college events such as school start, fraternity/sorority rush periods, and summer breaks. Our data measure a different type of friendships along with the study partner relationship and, though of much lower frequency, provide a different view into agents' relationships as subjects must name their friends and study partners in each wave of the study. We find increasing but plateauing homophily on the prominent dimensions of gender and ethnicity as students progress through college.
+
+\cite*{bramoulle2012homophily}   contrast: they get decreasing homophily in citations:   more get known easier to find.  As age form more cross type relationships.
+
+\section{The Caltech Cohort Study}
+\label{sec:caltech}
+
+Caltech is an independent, privately supported university located in Pasadena, California. It has around 900 undergraduate students, of which approximately 40\% are women.
+
+In the falls of 2013, 2014, and 2015 and the spring of 2015, we administered an incentivized online survey to the entire undergraduate student body. We used incentivized tasks to elicit an array of attributes, including risk aversion, ambiguity aversion, competitiveness, cognitive sophistication, implicit attitudes toward gender and race, generosity, honesty, overconfidence, over-precision, and optimism. Students were also asked a large set of questions addressing their lifestyle and social habits, including their sleep patterns, study routines, and physical attributes. We elicited students' social and study networks by asking students to name five of their closest friends and the average weekly time they spent with each in each installment of the survey, as well as five of their closest study partners in each installment of the survey.\footnote{For screenshots of the Spring 2015 survey, go to: \href{http://people.hss.caltech.edu/~lyariv/papers/ScreenshotsSpring2015.pdf}{{\color{blue}people.hss.caltech.edu/$\sim $lyariv/ScreenshotsSpring2015.pdf}}.} [[CHANGE LINK TO FALL 2015?]]
+
+Most of our analysis focuses on the fall surveys that are equally separated from one another in terms of time. In the fall of 2013, 88\% of the student body (806/916) responded to the survey.%, of which 38.5\% (310/806) were female. 
+The average payment was \$20.58. In the fall of 2014, 92\% of the entire student body (893/972) responded to the survey and the average payment was \$24.34. %Of those, 39\% were female (349/893). 
+Of those who took the survey in 2013 and did not graduate, 89\% (546/615) also took the survey in the fall of 2014. Unlike many other settings, there is little concern about self-selection into our surveys from the participant population due to our 90\%+ response rates, see \cite{snowberg2021testing} for a detailed analysis of selection into the CCS.  %\citep{cleave2013there,falk2013lab,harrison2009risk}.
+
+%In the Spring of 2015, 91\% of the entire student body (819/899) responded to the survey. Of those, 39\% were female (322/819), and the average payment was \$29.08. The difference in average payments across years was due to the inclusion of several additional incentivized items in 2015.\footnote{The number of overall students was substantially lower in the Spring of 2015, as about 50 students departed the institute due to hardship or early graduation. Further, we did not approach students who had spent more than four years at Caltech, accounting for approximately 25 students.} Of those who had taken the survey in 2015, 96\% (786/819) also took the survey in 2014. As Section \ref{sec:risk} requires data from both surveys, for consistency we use this subsample of 786 throughout.
+
+
+\input{tablesAndFigures/summaryStatistics.tex}
+
+In addition to survey data, we have institutional data on all students' demographic information and outcomes throughout their time at Caltech. In this paper, we use students' gender, race, country of origin, major, and grade point average (GPA). Caltech undergraduates have the option of living in one of the eight residential houses on campus or off-campus, that are divided into three geographical clusters: north, south, and far north.\footnote{Houses within a cluster exhibit strong connections in terms of proximity and shared activities.} While the allocation to on-campus houses is not random, we also use housing data in some of our analyses as controls. Table 1 provides summary statistics for both the cohort entering in fall 2013, which we track since arrival at Caltech, as well as the set of cohorts that overlap with the 2013 cohort---the students that members of the 2013 cohort might connect with.
+
+Caltech is a highly selective undergraduate institution, which may cause one to worry that the overall population is different from many others studied in the literature. Certainly, student populations are special in various ways. The undergraduate experience, however, is a unique period in which important life decisions are made, many new friendships are formed, and both social and scholastic interactions occur within a contained environment. These features make student populations particularly interesting for the study of how networks of interactions evolve. While Caltech students might be special in terms of their cognitive skills, they do not appear different from other student populations on many other dimensions. Responses from our survey to several standard elicitations---of risk, altruism in the dictator game, etc.---are similar to those reported in several other pools (see \citealt{gillen2019experimenting} and \citealt{snowberg2018testing}).
+
+%\section{Data Analysis}
+%\label{sec:data}
+
+%Lots to explore!
+
+%Here are the basic dynamic hypotheses:
+
+%\begin{itemize}
+%\item Average degree increases with time.
+
+%\item Homophily increases with time - the links that are added are more homophilous as time progresses.
+
+%\item Time between network changes increases over time, number of links that change per unit of time decreases with time.
+
+%\end{itemize}
+
+%When going to data, we can also be more specific about which dimensions are
+%considered and what the utility functions look like.
+
+%Seeing what the predictions are for behaviors - do opinions polarize? On what dimensions?
+
+\section{Dynamics of Connections}
+\label{sec:data}
+
+As students get acquainted with their environment, one might expect that both the number and the profile of their friendships and academic connections change. In this section, we show the patterns pertaining to the volume of friendships and academic interactions throughout the undergraduate experience. We then illustrate the dynamics of the composition of connections.
+
+\subsection{Volume of Linkages over Time}
+\label{sec:degree}
+
+%The model suggests two basic predictions:
+
+%\begin{itemize}
+%\item Degree will increase over time and eventually reach a steady state.
+%\item The probability of a friend being replaced is highest for the first friends formed and is decreasing with the
+%date at which a friendship was formed.
+%\end{itemize}
+
+The grey, right-most bars of Figure 1 illustrate the social and academic linkages students entering in 2013 exhibit throughout their undergraduate experience. We consider one student to be another student's friend or study partner if the latter student lists the first as a friend or study partner, respectively (that is, we consider what is often termed the \textit{out-degree}). For links between members of the 2013 cohort, 53.0\% of friendship links are reciprocated and 52.7\% of study partner links are reciprocated.  Recall that study partners were elicited for that cohort starting fall 2014, after a year-long engagement in classes. We therefore depict the number of study partners for that cohort's sophomore and junior years. As can be seen, the number of social links increases during students' first year on campus, but remains fairly stable after. The number of academic linkages declines slightly between sophomore and junior year.\footnote{The composition continues changing somewhat in terms of the fraction of friends from the same cohort---juniors have a greater fraction of their connections with students from other cohorts relative to sophomores.} %Furthermore, while most freshman connection are lost by sophomore year, a far larger fraction of connections is retained between sophomore and junior year. 
+
+Figure 1 also suggests that students have fewer study partners than friends, by an average of $0.6$. There is, in fact, a substantial overlap between friends and study partners in our data---for example, in the fall 2015 survey, 51\% of study partners in the 2013 cohort are also friends and 40\% of friends in the 2013 cohort are also study partners.
+
+%[[THIS FIGURE SHOULD BE BEAUTIFIED. ALSO, DO WE WANT TO KEEP IT AS A BAR CHART? OR PERHAS USE CDFs? HOW DO WE THINK OF FOLKS WITH NO LINKS?]]
+
+\begin{figure}[t!]
+\begin{center}
+\caption{Number of social and academic links across time, broken out by persistent and new friends. \label{numberLinks}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/avgLinksSExSG.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[t!]
+\begin{center}
+\caption{Number of social and academic links across time, broken out by persistent and new friends (2013 Cohort Only). \label{numberLinks}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/avgLinksSExSG2013.eps}
+\end{center}
+\end{figure}
+
+
+%[[TABLE 1 DOESN'T SEEM PERFECTLY CONSISTENT WITH FIGURES. RESULTS FROM DIFFERENT REGRESSIONS?]]
+
+%\input{tables/degreeGrowth.tex}
+
+The figure indicates that connections exhibit more persistence later in the undergraduate experience. Indeed, the probability a friendship formed during a student's freshman year lasts till his or her sophomore year is 11.9\%, whereas the probability a friendship observed during a student's sophomore year lasts till his or her junior year is 35.5\%.\footnote{These probabilities are somewhat higher when considering reciprocated links, where both students mention each other as friends or student partners. The probability a reciprocated friendship formed during a student's freshman year lasts till his or her sophomore year is 14.0\%, while the probability a reciprocated friendship observed during a student's sophomore year lasts till his or her junior year is 41.8\%} While we observe the 2013 cohort students' study partners only in their sophomore and junior years, it is interesting to note that study partnerships observed during students' sophomore year has a 21.4\% likelihood of survival through students' junior year, corresponding to a level that is in between the survival rates of friendships in students' first and second years at Caltech.\footnote{As before, when students mention one another as study partners, the rate of survival is higher and stands at 27.9\%.} We suspect this might in part be due to study partnerships taking a longer time to develop and stabilize than friendships. Last, friendships that are also study partnerships have a higher likelihood of survival, of 42.0\% between sophomore and junior than the corresponding likelihood of survival, of 35.5\%, of friendships alone.
+% The average survival is 40.0\%
+
+%[[ALSO TABLE 2??]]
+
+%\input{tables/linkSurvival.tex}
+
+%Of friends in Sophomore year, 5.8\% were also friends in Freshmen year. Of friends in Junior year, 38\% were also friends in Sophomore year.
+
+
+\subsection{Homophily over Non-malleable Traits}
+\label{sec:homophilyNonmalleable}
+
+We start by looking at the impact of two fundamentally non-malleable traits, gender and race, on the formation of social and academic links. Figure 1 illustrates that a substantial fraction of connections occur between similar individuals. Well over a half of links are between same-gender students, while about a half of links are between same-ethnicity students. This observation holds across both social and academic links, as well as across years. Furthermore, survival of connections between similar individuals is higher.
+
+%Fraction of women: 35\%. 
+
+%formula: 54.5
+
+%Fractions for ethnicities: 47.2, 1.6, 26.8, 10, 10.40, 4
+
+%formula 31.728
+
+%Log file 20190103ForPaper has 2013 cohort overall friendships (friendships between 2013 cohort), do that for each wave.
+
+To get a sense of the extent of homophily in our data, suppose first that students all had the same number of links formed at random.\footnote{Formally, suppose a fraction $f_{i}$ of students are of ``type'' $i$, capturing gender or ethnicity, and assume there are $n$ types in the population. With identical number of friends across types, we would expect a fraction $\sum_{i=1}^{n}f_{i}^{2}$ of links to be homophilous.} [[CHECK THESE NUMBERS WITH CORRECTED DATA]] Given the gender distribution in our data, we would expect 55\% of links to be between individuals of the same gender, contrasting the 76\% of same-gender friendships and 69\% same-gender study partnerships we observe in our data for the 2013 cohort. Similarly, random linkages would generate 32\% of links between individuals of the same ethnicities, contrasting the 49\% of same-ethnicity friendships and 45\% same-ethnicity study partnerships we observe in the data. These figures are suggestive of substantial homophily over both gender and race in the formation of social connections. Nonetheless, in the data, the number of links differ across gender and ethnicity.\footnote{For instance, in fall 2014, ethically asian students had an average number of $4.08$ friends and $3.30$ study partners; ethnically black or African American students had $5.00$ friends and $4.67$ study partners, both significantly higher. Similarly, in fall 2014, female students had an average of $3.94$ friends and $3.33$ study partners, while male students had an average of $4.23$ friends and $3.54$ study partners.} Heterogeneity in the number of links can, in principle, elevate the figures reported above mechanically---if, say, individuals of a certain ethnicity have more friends relative to other ethnicities, a large fraction of randomly generated links would be between individuals of that ethnicity and appear homophilous.\footnote{Formally, if each ``type'' $i$ student has $k_i$ friends, and a fraction $f_i$ of the population is of type $i$, we would expect a fraction  $\sum_{i=1}^{n}\frac{(f_{i}k_{i})^{2}}{\left( \sum_{j=1}^{n}f_{j}k_{j}\right)}/\left( \sum_{j=1}^{n}f_{j}k_{j}\right) =\frac{\sum_{i=1}^{n}(f_{i}k_{i})^{2}}{\left( \sum_{j=1}^{n}f_{j}k_{j}\right) ^{2}}$  of links to be homophilous.} We therefore use a dart-board approach to get at the aggregate levels of homophily. 
+
+We use simulations to form links at random, respecting the number of friends each individual has. These simulations suggest essentially the same numbers as those derived assuming a uniform number of links across students: [[CHECK THESE NUMBERS WITH CORRECTED DATA]]  55\% of same-gender friendships or study partnerships, and 32\% of same-ethnicity friendships or study partnerships. Figure \ref{MC_SG_SE_byWave} illustrates the full distribution of same-gender and same-race friendships resulting from these simulations and observed in the data. The distributions are ranked via first order stochastic dominance: individuals have consistently more same-gender and same-race connections than random assignment would prescribe.
+
+%\input{tables/FriendDegreeByGandE.tex}
+
+%\input{tables/StudyDegreeByGandE.tex}
+
+\begin{figure}[t!]
+\begin{center}
+\caption{CDFs of the proportion of friendship links to others of the same gender or ethnicity, broken down by wave. \label{MC_SG_SE_byWave}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/SESGWavesWithMonteCarlo.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[t!]
+\begin{center}
+\caption{CDFs of the proportion of friendship links to others of the same gender or ethnicity, broken down by wave (2013 Cohort Only). \label{MC_SG_SE_byWave}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/SESGWavesWithMonteCarlo2013.eps}
+\end{center}
+\end{figure}
+%[[IN THE TABLE, WE CONSIDER TARGETS THAT ARE ALSO OUTSIDE THE 2013 COHORT. NOTE THAT ADDED JUNIOR MEANS ADDED OVER SOPHOMORE.]]
+
+
+In what follows, we identify how homophily over gender and ethnicity evolves over time. There are two ways by which homophily can be generated: acquiring new friends who are similar to oneself and severing links with individuals who are dissimilar. The left, red and blue, bars of Figure 1 illustrate that both effects are at play. Same-ethnicity and same-gender connections are more likely to survive. Furthermore the evolution of their volumes mimics that of the overall number of connections.
+
+Table \ref{table:SESG} contains fixed-effects regression results that illustrate the importance of these two behaviors in the formation of links. The analysis focuses on the 2013 cohort, but allows for links with members of any cohort.\footnote{For the 2013 cohort, in their freshman year, $22/468=5\%$ of friendships are with members of other cohorts. This fraction goes up as students spend more time on campus: in their sophomore year, $212/968=22\%$ of friendships are with members of other cohorts, while in their junior year, this figure stands at $272/917=30\%$. Across all years, $22\%$ of friendships are with members of different cohorts.} [[WE MAY WANT TO SHIFT THIS COMMENT TO EARLIER, AS MOST OF THE ANALYSIS TAKES THIS APPROACH]] Added Sophomore corresponds to links students add in their sophomore year, while Added Junior corresponds to links students add in their junior year \textit{relative to their sophomore year}. For each variable, we present the corresponding coefficient in terms of the fraction of the average number of links.\footnote{A coefficient corresponding to the number $1$ would reflect the idea that the relevant variable implies the average number of links.}  
+
+%\begin{landscape}
+%\begin{table}[h!]
+%\begin{center}
+%\caption{Homophily by Ethnicity and Gender (original) \label{table:SESG}}  \vskip-9pt
+%\begin{tabular}{lcccccc} \hline \hline
+%& & & & & & \\ [-.15in]
+%& \multicolumn{3}{c}{Friends} & \multicolumn{3}{c}{Study Partners} \\ [.05in] \hline
+%& & & & & & \\ [-.15in]
+%Same Ethnicity & 1.93$^{***}$ &  & 1.21$^{***}$ & 2.20$^{***}$ &  & 1.56$^{***}$\\
+% & (.104) &  & (.146) & (.097) &  & (.136)\\  [.05in] 
+%Same Ethnicity $\times$ & 0.56$^{***}$ &  & 0.27 &  &  & \\
+%~~Added Sophomore Year & (.137) &  & (.194) &  &  & \\ [.05in] 
+%Same Ethnicity $\times$ & $-$0.02 &  & $-$0.10 & $-$0.32$^{**}$ &  & $-$0.21\\
+%~~Added Junior Year & (.131) &  & (.185) & (.139) &  & (.196)\\ [.05in] 
+%Same Gender &  & 1.48$^{***}$ & 1.02$^{***}$ &  & 2.12$^{***}$ & 1.73$^{***}$\\
+% &  & (.083) & (.095) &  & (.080) & (.092)\\ [.05in] 
+%Same Gender $\times$ &  & 0.97$^{***}$ & 0.86$^{***}$ &  &  & \\
+%~~Added Sophomore Year &  & (.112) & (.129) &  &  & \\ [.05in] 
+%Same Gender $\times$ &  & $-$0.13 & $-$0.18 &  & $-$0.46$^{***}$ & $-$0.42$^{***}$\\
+%~~Added Junior Year &  & (.108) & (.125) &  & (.114) & (.132)\\ [.05in] 
+%Same Ethnicity and Gender &  &  & 0.75$^{***}$ &  &  & 0.24\\
+% &  &  & (.211) &  &  & (.198)\\ [.05in] 
+%Same Ethnicity and Gender $\times$ &  &  & 0.11 &  &  & \\
+%~~Added Sophomore Year &  &  & (.282) &  &  & \\ [.05in] 
+%Same Ethnicity and Gender $\times$ &  &  & 0.26 &  &  & 0.02\\
+%~~Added Junior Year &  &  & (.270) &  &  & (.286)\\ [.05in] 
+%Added Sophomore Year & 0.35$^{***}$ & 0.16$^{***}$ & 0.13$^{**}$ &  &  & \\
+% & (.058) & (.063) & (.066) &  &  & \\ [.05in] 
+%Added Junior Year & 0.03 & 0.07 & 0.07 & $-$0.09 & $-$0.01 & 0.01\\
+% & (.055) & (.059) & (.063) & (.059) & (.063) & (.067)\\ [.05in] 
+%Constant & 0.36$^{***}$ & 0.24$^{***}$ & 0.11$^{**}$ & 0.70$^{***}$ & 0.45$^{***}$ & 0.27$^{***}$\\
+% & (.043) & (.047) & (.049) & (.040) & (.044) & (.046)\\ [.05in] \hline
+%& & & & & & \\ [-.15in]
+%Average Links & \multicolumn{3}{c}{0.0016} & \multicolumn{3}{c}{0.0014} \\ [.05in] \hline \hline
+%\rule{2in}{0pt} & \rule{0.75in}{0pt} & \rule{0.75in}{0pt} & \rule{0.75in}{0pt} & \rule{0.75in}{0pt} & \rule{0.75in}{0pt} & \rule{0.75in}{0pt}  \\ [-.15in]
+%\multicolumn{7}{l}{\parbox{6.5in}{\footnotesize \footnotesize\underline{Notes:} $^{***}$, $^{**}$, $^*$ denote statistical significance at the 1\%, 5\%, and 10\% level with standard errors in parenthesis.  Regression coefficients are in terms of the number of links compared to the average number of links.}} 
+%\end{tabular}		
+%\end{center}
+%\end{table} 
+%\end{landscape}
+
+\input{tablesAndFigures/SESG.tex}
+
+\input{tablesAndFigures/SESG2013.tex}
+
+Table \ref{table:SESG} illustrates the importance of similarity in gender and ethnicity for the formation of links, both social and academic. When looking at ethnicity alone, having the same ethnicity roughly doubles both social and study link probabilities.\footnote{Note that the ``Same Ethnicity'' coefficient for columns 4 through 6 refers to sophomore year as we observe study partnerships only in students' sophomore and junior years.} Interestingly, the additional impact of same ethnicity on the friendship probability in students' sophomore year is much weaker. The effect decreases, albeit insignificantly, in students' junior year. We see a similar effect when considering the probability of forming study partnerships in students' junior year---individuals of similar ethnicities are significantly less likely to become study partners. 
+
+When looking at gender alone, we again see a significant and large impact of gender on the formation of links, social and academic. While the effect of same gender on the probability of friendships increases significantly in students' sophomore year, this effect again does not increase in students' junior year. As with same ethnicity, study partners in their junior year are less likely to be of the same gender than those in their sophomore year. 
+
+The regressions corresponding to the third and sixth columns of Table \ref{table:SESG} include interaction terms between same gender and same ethnicity to account for the fact that some same-gender linkages are also same-ethnicity linkages. Overall, similarity in ethnicity and gender have a strong and comparable impact on the formation of both social and academic linkages. The patterns largely mirror those of considering same gender or same ethnicity separately. 
+
+[[LET'S DISCUSS COEFFICIENTS.]]
+
+To summarize, initially, new friendships tend to be with more similar individuals. As time goes by, this pattern appears less pronounced. Certainly, students' age, which may be associated with their world-view, their maturity, and so on, changes over the course of their studies. One should therefore interpret our results with care. The patterns we observe may be due to both the search technology in place as well as changing preferences over time. Interestingly, as shown in \citet{gillen2019experimenting}, students' preferences over other dimensions elicited through the survey---risk attitudes, time preferences, confidence, implicit attitudes toward gender and race, etc.---do not appear to change dramatically over the course of their studies. To the extent that preferences over social and academic connections do change with age, they do not seem to spill over to other domains.
+
+%[[ADD SOMETHING HERE? CAN WE USE THEIR BIRTHDAY TO CONTROL FOR THIS? COME BACK TO IT (discussion with Erik on Jan 3, 2019) ANOTHER IDEA (LY, Jan 2020): CAN WE IDENTIFY TRANSFER STUDENTS?]] 
+
+
+%[[FOR THE MODEL: COULD HAVE LEARNING ABOUT INDIVIDUAL CHARACTERISTICS OVER TIME...]]
+
+
+% Notice that while number of friends does not depend on gender, ethnicity as coded is associated with number of friends. [[POSSIBLY ADD NUMBERS]]
+
+	
+% International students have substantially fewer friends. Eliminating them from the regressions does not have any important effect (they are a small fraction). Caucasian students also have fewer friends. Eliminating them from the regressions makes the Same Ethnicity coefficient decrease and Same Gender coefficient increase. [[SHOULD ADD AS A NOTE]]
+
+%[[DO WE WANT TO KEEP THIS? AS IS (BEFORE, WE DIDN'T CONTROL FOR RECIPROCAL LINKS)?]]
+
+%[[NOTE TO SELF: THINK OF AN ALTERNATIVE...]]
+
+%To better understand the changes in homophily across years, consider the same question investigated by Table \ref{linkSurv2013}, but from the perspective of which friends or study partners were kept. That is, of one's friends/study partners in year $t$, what percentage were also a friend/study partner in year $t-1$? As can be seen in Table \ref{wasLinked2013}, there is a large increase in the proportion of one's links that were present in previous wave(s) as students progress through university. Combined with the increase in degree and the results from Table \ref{table:SESG}, this suggests that students replace many of their friends going from freshman to sophomore year, choosing new friends who are more similar to themselves in terms of gender and ethnicity. Of students' friends in junior year, significantly more of them were kept from sophomore year, and the friendships kept and added in junior year are similar in ethnicity and gender as those in sophomore year.
+
+%\input{linkKeeping.tex}
+
+
+%[[DO WE WANT TO ADD SOMETHING ON OVERLAP OF LINKS?]]
+
+%Table \ref{SESGOverlap} looks at how the gender and ethnicity homophilous links overlap. For each individual in each wave for both networks, we calculate the total number of their links in each wave that are with someone of the same gender, with someone of the same ethnicity, or with someone of either the same gender or same ethnicity. Likewise, we calculate the number of their links that are to individuals of both the same gender and same ethnicity. We take the ratio of the latter number to each of the former numbers and regress this ratio on wave dummies to look at how the overlap of same gender and same ethnicity links change over time. Interestingly, despite the increase in homophily and in link density over time, there is if anything a decrease in the overlap.
+
+%\input{overlap.tex}
+
+
+%Broader implication: base rates and search technology as important for outcomes as are preferences
+
+
+\section{Homophily and Housing}
+\label{sec:homophilyHousing}
+
+Caltech's housing system consists of eight independent houses.\footnote{See \href{https://en.wikipedia.org/wiki/House_System_at_the_California_Institute_of_Technology}{{\color{blue}en.wikipedia.org/wiki/House\_System\_at\_the\_California\_Institute\_of\_Technology}}.} Nearly all students live in one of these houses their first year at Caltech and many stay for a large fraction or all of their time at Caltech; only $8.5\%$ of sophomores and $19\%$ of juniors live in Caltech-owned off-campus housing or in housing unrelated to Caltech. Many of these retain an affiliation with one of the campus houses and continue dining and socializing within the housing system. Assignment to houses during the time of this study was based on a two-sided matching procedure reminiscent of the \cite{galeshapley1962} algorithm. In particular, unlike the random assignment of dorms in Dartmouth studied by \cite{sacerdote2001peer}, initial house assignment at Caltech is not random. Nonetheless, it is interesting to see how local geography affects friendship formations and the extent to which the initial choice of housing affects future linkages.
+
+\subsection{General Patterns}
+\label{sec:genPatterns}
+
+Table \ref{table:housing} summarizes fixed-effect regression results assessing the importance of housing for the formation of friendship links. As in Table \ref{table:SESG}, the estimated coefficients of variables represent the change in the fraction of the average number of links an increase in one unit of each of the variables generates.
+
+Unsurprisingly given the importance of geographical proximity established in the literature, the coefficient on the dummy for being in the same house is significant and sizable for all specifications. Interestingly, the coefficients on the dummies for being in both the same house and being either the same gender or same ethnicity are much larger than the coefficients for being the same gender or ethnicity but in different houses for the freshman and sophomore year networks, with homophily decreasing for links formed outside one's house in one's sophomore year.
+
+Nonetheless, overall homophily patterns over ethnicity and gender remain strong when controlling for housing and resemble those identified in Table  \ref{table:SESG}. In particular, the assignment to houses does not appear to alter the diversity of links, although it does increase how local those links are.
+
+%Including Same House and interactions with Same Gender and Same Ethnicity generates highly significant and substantial coefficients on the House variables (much larger than the Same Gender or Same Ethnicity coefficients alone). 
+
+%The number of friends varies by house. Restricting attention to the most ``social'' houses generates greater coefficients on the House coefficients, unsurprisingly.
+
+\input{tablesAndFigures/sameHouse.tex}
+
+\input{tablesAndFigures/sameHouse2013.tex}
+
+
+
+\subsection{Complementarities between Link Features}
+
+Our regression analysis indicates complementarities in preferences between similarities in geographical location, ethnicity, and gender. Nonetheless, finding friends that are similar on all these dimensions might be difficult. Indeed, Figure 1 illustrates that the fraction of friends and study partners that are of both the same ethnicity and gender is smaller than the fraction corresponding to connections that are similar with respect to only one of these attributes.
+
+\input{tablesAndFigures/correlations.tex}
+
+\input{tablesAndFigures/correlations2013.tex}
+
+[[LOOKING AT 2013 COHORT IN FALL 2014, BOTH FRIENDS AND STUDY PARTNERS (COUNT TWICE IF SOMEONE IS BOTH FRIEND AND STUDY PARTNER)]]
+
+
+In order to examine the linkages between attributes of connections, we consider the full set of friends and study partners reported through our surveys for the 2013. We focus on Fall 2014, when both social and academic linkages were elicited and homophilous preferences seemed most pronounced. In table ZZZ, we see \textit{negative} correlations between similarities in geographical location, ethnicity, and gender, albeit they are not uniformly significantly different from $0$. For example, same-ethnicity links are significantly more likely to be of different houses and vice versa. 
+
+Why do we see complementarities in link probabilities, but substitutabilities in link outcomes? We suspect these observations are ``mechanical'' in nature and an artifact of the underlying attribute distribution and students' search technology. If gender, ethnicity, and house location are independent, and encounters are random, matching on one of the three would be more likely than on a non-trivial subset. To the extent that forming an additional link is costly---either due to the time and energy costs of engaging in social and academic interactions that lead to connections, or due to a limited capacity for maintaining friends---the scarcity of individuals that are similar on multiple dimensions would generate these results.
+
+This suggests an important message. Homophily over multiple independent attributes allows for a diverse set of connections to form: friends who are similar on one dimension are more likely to be different on another. 
+
+
+
+\subsection{Homophily over Homophily \label{sec:homophilyOverHomophily}}
+
+[[FOCUS ON FRIENDSHIPS, NOT STUDY PARTNERSHIPS...]]
+
+Since housing assignment at Caltech is by and large a choice outcome, it offers a natural setting for inspecting whether more \textit{homophilous} individuals tend to congregate. The eight Caltech houses are divided into three geographical clusters: North houses, South houses, and a Far North house. Houses within each cluster organize joint events and are in greater proximity of one another. As a simple proxy for homophily, we consider the percentage of same-gender and same-ethnicity friends individuals have throughout our three fall surveys [[IS THAT PRECISE?]]. Figure \ref{CDF_SG_SE_byCluster} depicts the distributions of these percentages within each housing cluster. It also depicts simulated distributions, taking each individual's number of friends from the data and matching them at random within the housing clusters.
+
+\begin{figure}[t!]
+\begin{center}
+\caption{CDFs of the proportion of friendship links to others of the same gender/same ethnicity, broken down by housing cluster, with Monte Carlo simulations for reference. \label{CDF_SG_SE_byCluster}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/homophilyOverHomophilyWithMonteCarlo.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[t!]
+\begin{center}
+\caption{CDFs of the proportion of friendship links to others of the same gender/same ethnicity, broken down by housing cluster, with Monte Carlo simulations for reference (2013 Cohort Only). \label{CDF_SG_SE_byCluster}}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/homophilyOverHomophilyWithMonteCarlo2013.eps}
+\end{center}
+\end{figure}
+
+In line with our previous results, organically-made connections appear far more homophilous than random chance would have them. Indeed, the simulated distribution are first order stochastically dominated by the distributions corresponding to each of the housing clusters. Furthermore, the simulated distributions are virtually identical across the clusters, in stark contrast to what we observe in the data. We see substantial differences in the distribution of individual-level homophily attitudes between housing clusters, with the Far North house having more homophilous individuals than both the South and North houses. While the overall distributions are not perfectly ordered via first order stochastic dominance, North houses appear to have more highly-homophilous individuals than the South houses. Given the importance of within house links identified in Table \ref{table:housing} and the endogenous way students are matched with houses, this is suggestive of the possibility that homophilous individuals cluster together. 
+
+To further investigate the possibility of homophily over homophily, we calculate the fraction of each individual's friendships links in the fall 2014 wave to same ethnicity or same gender individuals. In Table \ref{individualHoH}, we regress the probability of a friendship link (scaled by the average probability of a friendship link) on the already identified homophily variables (same gender, ethnicity, or house) and on the difference between the two students' fractions of same gender or same ethnicity links.\footnote{To avoid any mechanical effect, we adjust the students' fraction of same ethnicity/gender links when the two students are linked by leaving out the other student from the calculation of the fraction.} %[[NOTE: FRACTIONS ARE COMPUTED USING TO NODES FROM ANY COHORT, BUT REGRESSION ONLY USES TO NODES THAT ARE IN 2013 COHORT]] 
+As can be seen from the negative coefficient on the difference terms, students are more likely to name other students are have similar same gender and ethnicity compositions in their friendships as themselves, again suggesting a bias in students' linking behaviors towards others of similar homophily.
+
+
+
+[[LET'S DISCUSS THIS TABLE, SOMEWHAT DIFFERENT THAN SLIDES, AND I AM NOT SURE ABOUT IT...]]
+
+\input{tablesAndFigures/HOverH.tex}
+
+\input{tablesAndFigures/HOverH2013.tex}
+
+
+\section{Individual Heterogeneity in Homophily \label{sec:heteroInHomophily} }
+
+\begin{figure}[t!]
+\begin{center}
+\caption{Correlations between the Percent Same Gender / Ethnicity of new and old friends with random choice, and types.}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/typesMonteCarlo.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}[t!]
+\begin{center}
+\caption{Correlations between the Percent Same Gender / Ethnicity of new and old friends with random choice, and types (2013 Cohort Only).}
+\includegraphics[width=0.9\textwidth]{tablesAndFigures/typesMonteCarlo2013.eps}
+\end{center}
+\end{figure}
+
+[[LET'S DISCUSS WHAT TO PUT HERE. POSSIBLY SHIFT BACK, HAVE SEPARATE SECTION ON HOUSING AND HOMOPHILY OVER HOMOPHILY.]]
+
+\section{The Consequences of Homophily}
+\label{sec:GPA}
+
+We consider one concrete consequence of the social networks student choose to make by looking at the interaction between GPA and students' study partner network composition in fall 2015. Table \ref{SESGGPA} presents regression results looking at how a student's study partners correlate with the change in her GPA. The dependent variable in all regressions is the increase in a student's GPA from the end of 2014 to the end of 2015. Each observation is a study partnership in the fall 2015 sample. The 2014 GPA difference is measured as the study partner's GPA at the end of 2014 minus the naming student's GPA at the same time. 
+
+As can be seen in all three columns, studying with someone who had a higher GPA than oneself correlates with increasing one's GPA from 2014 to 2015. Homophily interacts with this correlation. In the first column, we look at the effect of ethnicity homophily. There is both a direct negative though insignificant effect of choosing someone of the same ethnicity to study with and an indirect negative and significant effect in the form of weakening the benefit of studying with someone with a higher 2014 GPA.
+
+In the second and third columns of Table \ref{SESGGPA}, we look at the effect of gender homophily. In the second column, we see no significant effect of gender homophily through either the direct or the indirect channel. However, column three shows how this is not true for the subpopulation of female students. For these students, there is a positive and significant effect of having more female study partners and a positive though insignificant indirect effect through the strengthening of the benefit of studying with someone with a higher 2014 GPA. These results are broadly in agreement with the literature, which often find significantly different peer effects on academic achievement for males and females.
+
+\input{SESG_GPA.tex}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+\section{Leftover notes}
+
+[[SEPARATE REGRESSIONS INTO TWO TABLES: ONE WITHOUT HOUSES, ONE if theyWITH. MENTION DISTRIBUTION OF ETHNICITY AND GENDER ACROSS HOUSES (THOUGH STILL MAY BE CHOOSING HOUSES WHERE FORESEE FRIENDSHIPS). DISCUSS SACERDOTE, \cite{sacerdote2001peer}... MENTION THAT ROOMMATE TEND TO BE IN THE SAME HOUSE AND, MOSTLY OF THE SAME GENDER (SOME HOUSES ALLOW FOR ROOMMATES OF DIFFERENT GENDERS).]]
+
+[[WOULD ONE FRIEND, THE ROOMMATE, WHO IS OF THE SAME GENDER, EXPLAIN THE COEFFICIENT ON SGENDER x ADD SOPH? CAN LOOK AT LATER]]
+
+[[HOMOPHILY OVER ROOMMATES OVER ETHNICITIES?]]
+
+In 2013, 95\% of links are with friends from the same cohort.
+In 2015, 30\% of the links are with friends from different cohorts --> should perhaps report regressions without restricting targets (nothing changes qualitatively).
+
+We see a high correlation in fraction of friends of same gender or same ethnicity between Fall 2014 and Fall 2015 (of the order of 0.77). Correlation between 2013 and 2014 or 2013 and 2015, is around 0.25 --> types of individuals in terms of preferred composition of friends? 
+
+How homophilous are individuals? 
+
+meaning, what is the correlation in % ethnicity between sophomore and junior year?
+
+% same ethnicity
+
+how does that vary with friend / study partner turnover
+
+housing: what is the correlation in % same house (or % same cluster) within individuals across sophomore / junior year.
+
+then, cdf's by housing cluster.
+
+
+{\color{red} [[put in tables for these as regressions, and also a few
+bar charts that make things clear.]] }
+
+[[AGGREGATE OBSERVATIONS ON HOMOPHILY WITH RESPECT TO MALLEABLE TRAITS?]]
+
+
+\section{Conclusion}
+
+\newpage
+\setcounter{page}{1}
+\rfoot{References--\thepage}
+\begin{singlespace}
+\bibliography{networks}
+\end{singlespace}
+
+\newpage
+\section*{Appendix: Proofs}
+
+\noindent\textbf{Proof of Proposition }: ... \hbox{\hskip3pt\vrule width4pt
+height8pt depth1.5pt}
+
+
+\input{tablesAndFigures/HOverHAppendix.tex}
+
+\input{tablesAndFigures/HOverH2013Appendix.tex}
+
+
+
+\end{document}
+
+
+[[MODEL SECTIONS]]
+
+\section{A Model and its Dynamics}
+\label{sec:model}
+
+\subsection{The Basic Model}
+\label{sec:basicModel}
+
+A finite set of agents is indexed by $i\in \{1, \ldots, n\}$.
+
+They meet over time and form a network. Time flows continuously and the
+network at time $t$ is represented by its adjacency matrix $g^t \in
+\{0,1\}^{n\times n}$, where $g_{ij}^t=1$ indicate that $i$ and $j$ are
+friends at time $t$, and otherwise $g_{ij}^t=0$.
+
+
+We consider two cases, one in which links are directional and can be formed
+unilaterally, and the other in which the network is undirected and friendships
+require mutual consent in which case  $g^t$ is symmetric.
+
+Let $d_i(g^t)=\sum_{j} g^t_{ij}$ denote $i$'s degree at time $t$, which is
+the out-degree in the case of a directed network.
+
+We presume that agents are not friends with themselves, but this does not
+affect the qualitative results - it simply sets the diagonal of $g^t$ to be
+0.
+
+Agents have characteristics denoted $X_i^t$. These include, for instance,
+age, gender, ethnicity, religion, education level, etc., and possibly also
+various behaviors and beliefs. Given that some of these are malleable, we
+superscript by time.
+
+Agents get utility from their friendships. That utility depends on the pair
+of agents characteristics, where $V_i (X_i^t, X_j^t)\in \Re$ is the level of
+benefits that $i$ gets from a friendship with $j$. Agent $i$'s instantaneous
+utility flow at time $t$ is:
+
+\begin{equation}  \label{utility}
+U_i(g^t) = \sum_{j} g^t_{ij} V_i (X_i^t, X_j^t) - c_i(d_i(g^t)),
+\end{equation}
+where $c_i$ is an nondecreasing and
+convex function.
+
+This model is of purely hedonic network formation:  people get value from their direct relationships, but do not care about
+friends-of-friends.   This rules out some applications, but still admits some and enables us to analyze dynamics in a tractable manner.
+We comment on how some of the results extend below.
+
+\begin{comment}
+Let $\overline{V} = \max_{i,X^t_i, X^t_j} V_i (X_i^t, X_j^t) $.
+
+We assume that there exists some $\overline{d}<n$ for which $\overline{V} <
+c(\overline{d}+1) - c(\overline{d}) $.
+
+This ensures that no agent will form friendships with all other agents. This
+is not necessary for the analysis, but provides for the more interesting
+cases in which there exist some tradeoffs between friendships.
+\end{comment}
+
+
+\subsection{Dynamics}
+\label{sec:dynamics}
+
+Time passes continuously, and there is a random arrival process over which
+agents meet.
+
+We focus on a Poisson arrival process.
+In particular we consider an {\sl inhomogeneous Poisson point process}.  This is a general form of Poisson arrival
+process that allows for meetings between different pairs
+of agents to be both time and network dependent.
+In particular, it is a continuous time process where there is a instantaneous probability $\lambda(t,g^t)_{ij}$ for each $i<j$, such that
+the expected number of meetings of $i$ and $j$ in some interval of time is the integral of $\lambda(t,g^t)_{ij}$ over that time.
+\footnote{The $i<j$ is for the undirected case.  For the directed case, there is such a probability for each $i\neq j$.}
+
+We presume that $\lambda(t,g^t)_{ij}$ is continuous in $t$ and there exist $0<\underline{\lambda}<\overline{\lambda}<\infty$ such that
+ $\lambda(t,g^t)_{ij}\in [\underline{\lambda},\overline{\lambda}]$ for all $t, g^t, i,j$.
+
+Allows for biased meetings based on types, network dependent meetings, etc.
+
+
+A special case is a standard Poisson arrival process in which $\lambda(t,g^t)_{ij}=\lambda$ for all $t,i,j$.
+
+
+
+\begin{comment}
+The Poisson process is the time between meetings of any pairs of agents $ij$ in the society. At the
+random time $t$ where a meeting occurs, that meeting is between two people
+from the society, $i$ and $j$, where the meeting process is described by $%
+\pi_{ij}>0$ being the probability that $i<j$ meet, and $\sum_{i<j} \pi_{ij}=1
+$. It could be that this is purely random, or it could be that it depends on
+$X_i^t,X_j^t$ (and characteristics of other pairs, etc.). For now we take
+this probability to be stationary.
+\end{comment}
+
+\subsection{Strategies}
+\label{sec:strategies}
+
+Agent $i$ gets overall utility
+\begin{equation}  \label{udynamics}
+\int_t \beta^t \left[ \sum_{j} g^t_{ij} V_i (X_i^t, X_j^t) - c_i(d_i(g^t))\right]
+dt
+\end{equation}
+from the process and is an expected utility maximizer, where $\beta\in (0,1)$
+is a discount factor.
+
+When two agents meet, they have the chance to form a friendship if it does
+not already exist between them. At the same time, they may also choose to
+delete any of their existing friendships. The friendship is formed if it
+(together with some deletions) improves the utility of both of the agents in
+question.
+
+A strategy for agent $i$ is a mapping that indicates what an agent does when
+meeting an agent $j$ at time $t$.  We look at Markov strategies, which are
+functions of the current state of the network $g^t$ and the types $X^t$,
+and it is denoted $\sigma_i(g^t,X_t) \in \{0,1\}^{n-1}$, with the constraint
+that $\sigma_i(g^t,X_t)_k \leq g^t_{ik}$  for $k\neq j$.
+
+So, agent $i$ can sever any existing links and can form the new link with
+agent $j$.
+
+Given any $\lambda,\pi$, describing the meeting process, and profile of
+strategies, $\sigma$, describing what agents do when they have a new
+meeting, we end up with a continuous time Markov chain.
+
+So, agents can lose friendships over time, but forming a new friendship
+requires meeting the other agent. As $\lambda,\pi$ vary we can have either a
+very frequent or less frequent meeting process.
+
+[Discuss contrast with search game of CJP.]
+
+\subsection{Dynamic Equilibrium}
+\label{sec:dynamicEqm}
+
+We first analyze the case in which agents are myopic: so they maximize their
+value from the current network when making a choice. Later we discuss some
+interesting complications that arise from fully forward-looking agents.
+
+A \textsl{pairwise Nash network} is such that
+
+pairwise stable
+
+Nash stable
+
+directed
+
+%core or strongly stable network [[jv reference]]
+%is a collection of strategies $\sigma$ for which:
+
+\section{Analysis of Directed Networks}
+\label{sec:analysisDirNetworks}
+
+We begin with an analysis of directed networks as that case provides transparent intuition.
+
+[[Following result for forward looking requires that $\lambda$ not depend on current network, otherwise may form friendships just to get to meet someone...
+Rewrite to have lambda depend on t, but not g,  then at end mention extensions.]]
+
+\begin{proposition}
+\label{directed}
+Under directed network formation, myopic and forward looking strategies lead to the same outcomes in which:
+
+\begin{itemize}
+\item if a relationship has ever been dropped (so $g_{ij}^t=1$ and $g_{ij}^{t^{\prime }}=0$ for $t^{\prime }>t$), then it is never reformed,
+
+\item an agent drops at most one link at a time, and only when a new link is
+added,
+
+\item total degree (and thus average degree) in the network is nondecreasing in time,
+
+\item whenever an agent adds a new link and drops an old one, the dropped
+link is the one from which the agent had the least benefit and the new
+link has a higher benefit than the dropped link,
+
+\item the process converges to a unique limit network in terms of connections between various
+types (presuming that $%
+V_i(X_i,X_j)$ is generic, so differs for all $ij$),
+
+%\item the time between changes in the network increases in expectation over time (need meeting process to be time, and network independent) [[not obvious?]],
+
+%\item friendships that are formed later are expected to last longer [[after have hit max degree]],
+
+\item the limit network is efficient.
+
+\end{itemize}
+\end{proposition}
+
+[[Note that even without preferences for same type, we get a similar partial order $\succeq$ defined below over utilities rather than homophily.]]
+
+
+The proof of Proposition \ref{directed} is straightforward and so we just outline it.
+
+Let $\overline{d}_i$ denote the largest $k$ for which $O_k \left( \{V_i(X_i,X_j)  | j\neq i\} \right) \geq  c_i(k)-c_i(k-1)$.
+This is the most links that $i$ would ever form as any more links would be such that the marginal utility from the link would necessarily be less than its marginal cost.
+
+Any optimal strategy (myopic or forward looking) is to add a new link whenever its utility exceeds its marginal cost, or whenever it exceeds the utility of a current link,  and to delete a link whenever a new one is added if the least valuable link no longer exceeds its marginal cost.
+
+Thus, agents always add new links if the value exceeds the marginal cost or if it is better than some current link.
+A link may be deleted when a new link is added and the deleted link is the lowest value link and no longer exceeds its marginal cost.   Eventually
+agents are just replacing existing links with more valuable ones.
+
+Degree never decreases, but links can be deleted at various points.    It might be that a person forms a first link that is not very valuable.  Then they find a more valuable link and replace the first one, not keeping the first one since it does not exceed the marginal cost of a second link.  But it could be that the agent then finds a second link with a value that exceeds a second marginal cost and adds that, and then has two links.
+
+
+
+Let us say that there is a preference for similar types if there exists a metric $\delta$ over characteristics such that
+ $V_i(X_i,X_j) > V_i (X_i,X_j')$ whenever  $\delta(X_i,X_j) <\delta  (X_i,X_j')$
+So, people get higher utility from
+matching with others who are more similar.
+
+
+We define a partial order over friendships and homophily as follows.
+
+\begin{comment}
+Let $dim(x)$ denote the dimension of a vector $x$.
+
+Consider two finite-dimensional vectors $x$ and $y$ that might have different dimensions.
+
+Vector $x\succeq_h y$  if  $dim(x)\geq dim(y)$ and  $k-Ord(x) \geq k-Ord(y)$ for every $k\leq dim(y)$,
+and $x\succ_h y$ if there is strict inequality for some $k\leq dim(y)$.
+
+So,  $x=(5,4,1) \succ_h y=(5,3)$.
+\end{comment}
+
+Given a finite set $S\subset \Re$, let $O_k(S)$ where $k\leq |S|$ denote the $k$-th order statistic of $S$:  so it is the $k$th largest element of $S$.
+
+We say that a network $g$ is weakly more homophilous than a network $g$, denoted $g \succeq_h  g'$,  if  for every $i$
+%\begin{itemize}
+%\item  $d_i(g) \geq d_i(g')$, and
+$$O_k\left( \{-\delta(X_i,X_j)  | \ j: g_{ij}=1\} \right)  \geq O_k \left( \{ -\delta(X_i,X_j)  | \ j: g'_{ij}=1\} \right){\rm \ for \  all \ } k\leq  \min\left(d_i(g),d_i(g')\right).$$
+%\end{itemize}
+
+
+We say that a network $g$ is strictly more homophilous than a network $g$, denoted $g \succ_h  g'$,  if it is weakly more homophilous, and the above inequality
+holds strictly for some $i,k$.
+
+
+So, a network $g$ is (weakly) more homophilous than a network $g'$ if when those connections
+are ordered in terms of how homophilous they are (from most to least ), they are at least as homophilous, entry-by-entry under $g$ as $g'$ for as many connections as can be compared.
+
+
+\begin{corollary}
+\label{directed}
+Under directed network formation with preferences for same type, under both myopic and forward looking strategies
+the network becomes more homophilistic over time:  $g^t \succeq_h g^{t'}$ for all $t\geq t'$, with strict inequality each time a connection is dropped.
+\end{corollary}
+
+
+[[Add:  takes several periods to learn personalities. 
+value to different dimensions for study versus friends.
+economy of friends if multiplexed.]]
+
+
+\section{Analysis of Undirected Networks and Bilateral Friendships}
+\label{sec:analysisUndirNetworks}
+
+The case of undirected network is more nuanced and subtle than the case of directed networks.
+The reason is that an agent may lose a link because the partner no longer wants the link, not because the agent is replacing the link.
+
+leads to three complications:
+\begin{itemize}
+\item  nonexistence
+\item  degree is no longer monotone over time
+\item  homophily is no longer monotone on the path - just from start to end under some conditions.
+\end{itemize}
+
+\noindent
+{\bf Example nonexistence:}
+
+An easy example here is the classic ``roommate'' counter-example to stable matchings (e.g., see the discussion in \cite{bogomolnaiaj2002}): person 1 likes 2 more than 3, instead 2 likes 3 more than 1, and 3 likes 1 more than 2, and each person wants exactly one link (the marginal cost so low for a first link that any partner is acceptable and the marginal cost prohibitively high for a second link).
+In such an example there is no stable network.
+
+This is avoided when there is some homophily and/or symmetry in preferences.
+Can get existence.
+
+\noindent
+{\bf Example nonmonotone degree:}
+
+4 people, unidimensional types: with types  $X_1=0, X_2=2, X_3=3, X_4=5$.
+Utility is  $V_i(X_i,X_j)= 4-|X_i-X_j|$.
+All people want exactly one
+link $c_i(d_i)=0$ if $d_i\leq 1$, while $c(d_i)=20$ if $d_i>1$.
+
+The highest utility link is between agents 2 and 3, and that link will eventually form, and the only stable network is to have link 23 (14 get negative utility from each other).
+However, some pair besides  23 are the first to meet, then that link will form.
+For instance, one possible dynamic is for 12 to meet first and form a link,  then 34 to meet and form a link, then 23 to meet and drop their existing links and link to each other,
+
+In this case, it can be that there are two links then it drops to one.
+
+Non-monotone degree will happen along the path whenever a link is dropped.
+
+
+\noindent
+{\bf Example nonmonotone homophily:}
+
+A friendship that replaces another must have higher value.  But it is possible that the ones that are broken to form a new one end up being replaced by lower value ones.
+
+Change the above example to have $V_i(X_i,X_j)= 6-|X_i-X_j|$
+
+For agents 1 and 4, if the links 14 and 23 happen first then they end up with homophily -2, but eventually they end up with homophily -5.
+Homophily is not even increasing in expectation.  The ending network is -5 for them, but there is a positive chance of getting a lower level on the path.
+
+Note also that the total utility is lower at the end network than the intermediate network (-2-2 versus -1-5).
+
+This can be avoided with large numbers of each type, as then each type will end up matching with own types eventually.
+
+
+\noindent
+{\bf Example Pareto inefficient network:}
+
+Can be Pareto inefficient.  do variation on previous example, but with capacity for two links, and two different groupings like in that example, but reverse role when go across groupings so that sometimes play role of 23, sometimes 14 role.
+Everyone better off with the unstable network.
+
+
+\subsection{Finite number of Types and Homophily}
+\label{sec:finiteTypes}
+
+
+Suppose that there are homophilistic preferences.
+
+Let $d_{X}$ be the maximum number of friendships that an agent of type $X$ would ever form.
+Suppose that the number of agents of type $X$ is a multiple of $d_X$.
+
+\begin{claim}
+\label{undir-homophily}
+Under the above condition with homophilistic preferences there exists a unique stable network in terms of connections of types, which is fully homophilistic.
+It is reached under both myopic and forward-looking strategies, and it has at least as many connections and is at least as high in homophily as
+any network along the path, and strictly more homophily than any intermediate network with any cross types.
+\end{claim}
+
+
+
+\noindent
+{\bf Example some of the dynamics:}
+
+this is done with continuum and discrete time periods.
+
+Larger fraction of larger groups get to their limit faster - slowest fractionally for the smallest groups.
+
+
+Do two type example, fraction $\lambda\geq 1/2$ of type 1.   Discrete periods.   All match in each period.
+each wants one friend, and prefers same type.
+
+After one period, $\lambda^2$ of type 1 and $(1-\lambda)^2$ of type 2s have matched with own type and will never change.
+
+$2\lambda(1-\lambda)$ have matched cross type (this is a greater fraction for the type 2s).
+It is now a 50/50 population.
+
+After second period:
+
+Now 1/4 of these cross-type matches matches have both partners meet their own type in the next period and then never change.
+
+1/4 of the matches have neither meet a new partner and stay together.
+
+The remaining 1/2 have one meet a same type and break up with the partner.   That other partner met a cross type:   some of those cross types were just jilted by their partner (1/2 of them) and so they pair up.   So it is 1/4 of total of these cross-matched agents who are dumped, and then half of them pick up a new partner.
+
+In total:
+we end up with  1/2 agents leaving with own type,  3/8 still matched with opposite type, and 1/8 unmatched.
+
+Third period  and onwards:   1/2 agents leave and other 1/2 are mixed between cross types and unmatched...
+
+
+
+\subsection{Symmetric Link Payoffs}
+\label{sec:symPayoffs}
+
+$c_i=c$ and
+$V_i(X_i^t,X_j^t) = V_j(X_i^t,X_j^t )$
+
+Generic payoffs,  so that no two links have the same value.
+
+Unique limit network:
+
+take most valuable link.  If it exceeds marginal cost add it.
+Next most valuable link, iterate.
+
+Is Pairwise Nash Network.
+
+
+
+
+[[note that this game is a variation on a hedonic game (additively separable
+version, see bogomalnaia jackson).
+
+more generally, there are interesting aspects to friendships - they fall
+into two categories: short term and long term. Long term are never broken
+once formed -- they are a subset of the links of the limit network. Short term are eventually broken, but may be useful short term.
+
+possible that link in the limit network is broken then formed again:  break when get better link, but that better link is eventually broken by the other who is eventually no longer available...
+
+Another point: the myopic equilibrium is the same with incomplete
+information -- if only see value of friendship when meeting, then would
+still follow the same equilibrium trajectory.  presuming no knowledge of which partner might dump you..., higher utility makes it less likely the other will dump you...]]
+
+
+ordinal potential function (from jw):  number of networks that have improving paths to the current one.  show that this is well defined.
+
+\begin{lemma}
+The game has an ordinal potential function:
+as above
+\end{lemma}
+
+\begin{proposition}
+\label{homophily}
+
+Consider a symmetric $V$.  Under myopically optimal strategies:
+
+\begin{itemize}
+%[[wrong:]] \item if a relationship has ever been dropped (so $g_{ij}^t=1$ and $g_{ij}^{t^{\prime }}=0$ for $t^{\prime }>t$), then it is never reformed,
+
+\item an agent drops at most one link at a time, and a link in the network is only dropped when some new link is
+added (at most two links are dropped at a time),
+
+%\item  [[wrong:]] total degree (and thus average degree) in the network is nondecreasing in time,
+
+\item whenever an agent adds a new link and drops an old one, the dropped
+link is the one from which the agent had the least benefit and the new
+link has a higher benefit than the dropped link,
+
+\item the process converges to a unique limit network (presuming that $%
+V(X_i,X_j)$ is generic, so differs for all $ij$),
+
+\item [[in homophily case]]
+the limit network maximizes homophily subject to it being a potential
+limiting network (nobody would benefit from simply deleting an existing link
+and no two agents who are not linked would want to add a link without
+deleting any existing links - so pairwise stable, which is a necessary
+condition for it to be a limit point).
+\end{itemize}
+\end{proposition}
+
+[[what is needed to get nondecreasing {\sl expected} degree?
+suppose that everyone has some degree capacity -- never pass it, but all utilities are positive and each person goes up to that capacity in equilibrium.
+
+also need some conditions on meeting process.
+
+case of homogeneous meeting process and random utilities from same distribution.
+
+even when get to full capacity, would expect it to drop down again with positive probability if not all pairs have met yet, then fill up again.
+
+weakly monotone:  for any network there is eventually a time after which the network is denser...
+
+or sufficiently convex...
+]]
+
+\bigskip \noindent{Sketch of proof of Proposition \ref{homophily}:}
+
+An agent's myopically optimal strategy is as follows.
+
+Consider $i$ wishing faced with the possibility of adding a link to $j$ at
+some time $t$ and let $g^t$ be the existing network already in place.
+
+\begin{itemize}
+\item Case 1: $V_i (X_i, X_j) > c(d_i(g^t)+1) - c(d_i(g^t))$ and $\min_{k:
+g^t_{ik}=1} V_i (X_i, X_k) > c(d_i(g^t)+1) - c(d_i(g^t))$
+
+\begin{itemize}
+\item then $i$ attempts to add the link and no link is deleted (and the link
+is added if $j$ is also willing).
+\end{itemize}
+
+\item Case 2: not case 1 and $\min_{k: g^t_{ik}=1} V_i (X_i, X_k) < V_i
+(X_i, X_j) $ \footnote{%
+Note that this implies that and $V_i (X_i, X_j) > c(d_i(g^t)) - c(d_i(g^t)-1)
+$, since the link to $k$ is present.}
+
+\begin{itemize}
+\item then $i$ would add the link and delete some $k$ which minimizes $V_i
+(X_i, X_k)$ (this is done if $j$ is also willing)
+\end{itemize}
+
+\item Case 3: not case 1 nor 2
+
+\begin{itemize}
+\item then $i$ would not want to add the link and it is not added.
+\end{itemize}
+\end{itemize}
+
+Note that this means that when an agent adds a new link, either it does not
+displace an existing link, or else knocks out an existing link that was less
+close.
+
+By triangle inequality and symmetry, things cannot cycle.
+
+The only way that agents lose degree, is to have one of their partners drop
+a link.
+
+Degree could drop by one, as one link displaces two.
+
+Now the unique limit can be found as follows. Find the two agents who have
+the minimal distance. They will be linked to each other in any limit network
+(presuming that the link is more valuable than the cost of a first link), as
+that link will displace any other link and will always be added when it is
+eventually available.
+
+now the inductive step: find the two that are next closest who are not yet
+linked, subject to those two being willing to both add the link given the
+existing network.
+
+Iterate until no more links can be added. This is the unique limit network.
+
+This maximizes homophily among all networks for which no links could be
+added and nobody wants to delete a link (which are the only potential limit
+points). \hbox{\hskip3pt\vrule width4pt height8pt depth1.5pt}
+
+
+\subsection{Homophily}
+
+[[old section]]
+
+special case of symmetry
+
+Consider a setting in which $V(X_i^t,X_j^t) = v( \delta(X_i^t-X_j^t ))$,
+where $v$ is a decreasing function and $\delta$ is a distance function that
+satisfies the triangle inequality. So, people get higher utility from
+matching with others who are similar.
+
+[[
+Comparing later to earlier -- if earlier is in growth phase (nobody at capacity yet), then weakly lower homophily than later network.
+If comparing two later networks of equal number of links,  the later either dominates in the metric above, or is non-comparable.   Never earlier dominates.
+In case in which People have a vector of characteristics.
+have number of people large enough so that can fully match.
+Limit network is fully homophilistic.  ]]
+
+
+
+\begin{comment}
+\begin{proposition}
+\label{dynamics} With homophily and myopically optimal strategies:
+
+\begin{itemize}
+\item the time between changes in the network increases in expectation over
+time (need meeting process to be time, and network independent) [[not obvious?]],
+
+\item [[not true]] friendships that are formed later are more homophilous in expectation,
+
+\item [[not true]] expected average homophily increases with time (average distance
+between linked nodes decreases with time),
+
+\item friendships that are formed later are expected to last longer (hard to
+prove as also subject to constraint of capacity, but some version of this
+will be true, if we condition upon the degree when it was formed).
+\end{itemize}
+\end{proposition}
+
+
+[[need more structure to get increasing homophily:  finite set of types and preference for agreement on more types.  ]]
+
+Directed version everything holds.
+
+\bigskip \noindent\textbf{Proof of Proposition \ref{dynamics}:}
+
+\hbox{\hskip3pt\vrule width4pt height8pt depth1.5pt}
+\end{comment}
+
+
+
+\subsection{Extensions}
+
+Note that the basic dynamics and results of the homophily model hold even in
+models not based on homophily, as long as pair have some single number that
+is the value of that friendship and both people's utilities are monotone
+functions of those numbers. That number does not have to be based on
+distance between attributes, but could be very pair specific.
+
+\section{Fully Forward Looking Agents}
+
+game looks to have a potential and unique equilibrium -- so same end point
+will be reached whether myopic or forward looking.\footnote{%
+reference to mauleon, vannetelbosch for forward looking.}
+
+Do this for case with cost of links that are 0 up to some level and then
+infinite past it -- people just have a time limit.
+
+The potential function is the total sum of the value of all links -
+presuming that the value is symmetric to the two agents and there is no
+interaction between values. see \cite{bogomolnaiaj2002}
+
+Much of this can be illustrated in a setting in which a person has $c(d)=0$
+if $d\leq 1$ and $c(d)$ is higher than the value of my second-most valued
+friend if $d>1$, so that a person wants one friend.
+
+Example 1: I have a current friend worth value $v$ and a possibility of
+forming a friendship with another friend of value $v^{\prime }>v$. However,
+I realize that this person has many other people that she values more than
+me. So, once she meets one of them, she is likely to drop me. I might stay
+with my lower value friend and not take the new friendship.
+
+Example 2: A variation on the above: I keep two friends even though the
+second one has a marginal negative value, since I know the highly valuable
+one will eventually drop me, and then I will still have a friend and will
+not be friendless while waiting to form a new friendship.
+
+\bigskip
+
+\section{Assortative Friendships:  Weak ties are Strong, Weaker agents are more homophilistic}
+
+
+have two categories of characteristics:   one on which people like to match with same agents.   The other on which they wish to match with the strongest (assortative).
+
+Then when people form cross-group (non-homophilistic) ties, those must have high value on the strength dimension.
+
+Weaker types end up with more homophily. Strongest study partners can link across groups,  weaker ones are more homophilistic as nobody wants to partner across groups with them.
